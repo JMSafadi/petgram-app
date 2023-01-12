@@ -4,24 +4,42 @@ import { PhotoCardWithQuery } from './container/PhotoCardWithQuery';
 import { Logo } from './components/Logo/Logo'
 import Home from './pages/home';
 import { Router } from '@reach/router';
+import Detail from './pages/Detail';
+import Favs from './pages/Favs';
+import User from './pages/User';
+import NotRegisteredUser from './pages/NotRegisteredUser';
+import Navbar from './components/Navbar/Navbar';
+import Context from './context';
+
 
 function App() {
-
-  const urlParams = new window.URLSearchParams(window.location.search)
-  const detailId = urlParams.get('detail')
 
   return (
     <div className="App">
       <GlobalStyle/>
       <Logo/>
-      {
-        detailId
-        ? <PhotoCardWithQuery id={detailId} />
-        : <Router>
-            <Home path='/'/>
-            <Home path='/pet/:id'/>
-          </Router>
-      }
+
+      <Router>
+        <Home path='/'/>
+        <Home path='/pet/:id'/>
+        <Detail path='/detail/:detailId' />
+      </Router>
+
+        <Context.Consumer  >
+          {
+            ({ isAuth }) =>
+              isAuth
+              ? <Router>
+                  <Favs path='/favs' />
+                  <User path='/user' />
+                </Router>
+              : <Router>
+                  <NotRegisteredUser path='/favs' />
+                  <NotRegisteredUser path='/user' />
+                </Router>
+          }
+        </Context.Consumer>
+        <Navbar/>
     </div>
   )
 }
