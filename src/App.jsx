@@ -2,7 +2,7 @@ import React from 'react';
 import { GlobalStyle } from './styles/GlobalStyles';
 import { PhotoCardWithQuery } from './container/PhotoCardWithQuery';
 import { Logo } from './components/Logo/Logo'
-import Home from './pages/home';
+import Home from './pages/Home';
 import { Router } from '@reach/router';
 import Detail from './pages/Detail';
 import Favs from './pages/Favs';
