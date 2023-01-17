@@ -13,4 +13,10 @@ const FavButton = ({ liked, likes, onClick }) => {
     );
 }
 
+FavButton.protoTypes = {
+    liked: PropTypes.bool.isRequired,
+    likes: PropTypes.number.isRequired,
+    onClick: PropTypes.func.isRequired,
+}
+
 export default FavButton;
